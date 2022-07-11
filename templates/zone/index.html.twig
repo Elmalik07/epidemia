@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaysController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+
+    <!-- Pie Chart -->
+    <div class="col-xl-12 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des pays</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>ID</td>
+                        <td>Nom_Zone</td>
+                        <td>Pays</td>
+                         {% if is_granted('ROLE_ADMIN') %}
+                        <td>Action</td>
+                        <td>Action</td>
+                        {%endif%}
+                    </tr>
+                    {% for z in  listzone %}
+                    <tr>
+                        <td>{{ z.id }}</td>
+                        <td>{{ z.nom }}</td>
+                        <td>{{ z.pays }}</td>
+                         {% if is_granted('ROLE_ADMIN') %}
+                        <td><a href="{{path('editZone', {'id' : z.id} )}}">Editer</a></td>
+                        <td><a href="{{path('deleteZone', {'id' : z.id} )}}" onclick="return confirm('Vouslez-vous supprimer cette zone ?');">Supprimer</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

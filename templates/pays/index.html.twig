@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaysController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+
+    <!-- Pie Chart -->
+    <div class="col-xl-12 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des pays</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>ID</td>
+                        <td>Nom_Pays</td>
+                        <td>Action</td>
+                        <td>Action</td>
+                    </tr>
+                    {% for p in listpays %}
+                    <tr>
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.nom }}</td>
+                        <td><a href="{{path('editPays', {'id' : p.id} )}}">Editer</a></td>
+                        <td><a href="{{path('deletePays', {'id' : p.id} )}}" onclick="return confirm('Vouslez-vous supprimer ce pays ?');">Supprimer</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
